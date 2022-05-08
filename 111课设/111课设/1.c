@@ -29,6 +29,7 @@ void FindRoot()
 {
 	double a, b, c, disc, x1, x2, r, i;
 	char t;
+	printf("Please input three numbers:");
 Loop:   scanf("%lf %lf %lf", &a, &b, &c);
 		printf("The equation");
 		if (fabs(a) <= 1e-6)
@@ -124,11 +125,17 @@ void Diamond()
 {
 	int lines;
 	printf("Please input lines:");
-	scanf("%d", &lines);
-	if ((lines % 2) == 0)
-		printf("Please input an odd number");
-	else
-		Print_Diamond(lines);
+	while(1)
+	{
+		scanf("%d", &lines);
+		if ((lines % 2) == 0)
+			printf("Please input an odd number:");
+		else
+		{
+			Print_Diamond(lines);
+			break;
+		}
+	}
 }
 
 void Calculator()
@@ -165,8 +172,14 @@ void Calculator()
 
 int main()
 {
+	int a[100] = {0};
+	int i,j,n=0;
 	char c;
-	system("cls");
+	printf("输入z，开始运行功能，其它键退出\n");
+	c = getchar();
+	for (i = 0; c == 'z'; )
+	{
+Mm:	system("cls");
 	printf("***************************\n");
 	printf("************menu***********\n");
 	printf("***************************\n");
@@ -177,62 +190,71 @@ int main()
 	printf("       5.Diamond\n");
 	printf("       6.Calculator\n");
 	printf("       0.GoodBye!\n");
+	printf("       Input 1-6,0:\n");
 	printf("***************************\n");
-Mm:	switch (menu_select())
+	switch (j=menu_select())
+			{
+				case 1:
+					system("cls");
+					menu_out = 1;
+					FindNum();
+					printf("\n");
+					break;
+
+				case 2:
+					system("cls");
+					menu_out = 1;
+					FindRoot();
+					printf("\n");
+					break;
+
+				case 3:
+					system("cls");
+					menu_out = 1;
+					Detective();
+					printf("\n");
+					break;
+
+				case 4:
+					system("cls");
+					menu_out = 1;
+					Monkey();
+					printf("\n");
+					break;
+
+				case 5:
+					system("cls");
+					menu_out = 1;
+					Diamond();
+					printf("\n");
+					break;
+
+				case 6:
+					system("cls");
+					menu_out = 1;
+					Calculator();
+					printf("\n");
+					break;
+
+				case 0:
+					system("cls");
+					printf("GoodBye!");
+					printf("\n");
+					break;
+
+				default:break;
+			}
+		a[i] = j;
+		printf("z 继续，其它键退出\n");
+		c = getchar();
+		if (getchar() == 'z')
 		{
-			case 1:
-				system("cls");
-				menu_out = 1;			
-				FindNum();	
-				printf("\n");
-			break;
-
-			case 2:
-				system("cls");
-				menu_out = 1;
-				FindRoot();
-				printf("\n");
-			break;
-
-			case 3:
-				system("cls");
-				menu_out = 1;
-				Detective();
-				printf("\n");
-			break;
-
-			case 4:
-				system("cls");
-				menu_out = 1;
-				Monkey();
-				printf("\n");
-			break;
-
-			case 5:
-				system("cls");
-				menu_out = 1;
-				Diamond();
-				printf("\n");
-			break;
-
-			case 6:
-				system("cls");
-				menu_out = 1;
-				Calculator();
-				printf("\n");
-			break;
-
-			case 0:
-				system("cls");
-				printf("GoodBye!");
-				printf("\n");
-			break;
-
-			default:break;
+			n++;
+			i++;
+			goto Mm;
 		}
-	printf("z 继续，其它键退出\n");
-	c = getchar();
-	if (getchar() == 'z')
-		goto Mm;
+	}
+	for (i = 0; i <= n; i++)
+		printf("%d	", a[i]);
 	return 0;
 }
