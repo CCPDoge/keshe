@@ -171,7 +171,7 @@ void Calculator()
 }
 
 int main()
-{
+{   char b[7][15]={{"Goodbye"},{"FindNum"},{"FindRoot"},{"Detective"},{"Monkey"},{"Diamond"},{"Calculator"}};
 	int a[100] = {0};
 	int i,j,n=0;
 	char c;
@@ -255,6 +255,9 @@ Mm:	system("cls");
 		}
 	}
 	for (i = 0; i <= n; i++)
+	{
 		printf("%d	", a[i]);
+		printf("%s\n",b[a[i]]);
+	}
 	return 0;
 }
